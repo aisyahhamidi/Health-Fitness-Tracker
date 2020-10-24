@@ -6,28 +6,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Recursive&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
-<!--style>
-    .form-img{
-  margin-top: 1%;
-  float: left;
-  width: 40%;
-}
-
-.form-image{
-  height: 90vh;
-  width: 100%;
-}
-
-.form{
-  float: right;
-  width: 60%;
-}
-
-form{
-  margin: 1% 2%;
-  color: #7c7575;
-}
-</style-->
+    <script>
+        function validate(){
+            var uname = document.getElementById('uname').value;
+            var email = document.getElementById('emailid').value;
+            var pswd1 = document.getElementById('pswd1').value;
+            var pswd2 = document.getElementById('pswd2').value;
+            if(uname==""||uname==null){
+                alert("Please enter username");
+            }
+            if(pswd1.length<6){
+                alert('Password must be atleast 6 characters long');
+            }
+            else{
+                if(pswd1.match(/[A-Z]/) == null || pswd1.match(/[a-z]/) == null || pswd1.match(/\W/) == null || pswd1.match(/[0-9]/) == null ){
+                alert('Password must contain atleast 1 uppercase letter, 1 lowercase letter and 1 special character!');
+                }
+                else{
+                    if(pswd1!=pswd2){
+                    alert('Please enter correct password');
+                    }
+                }
+            } 
+        }
+    </script>
 </head>
 
 <body>
@@ -60,17 +62,18 @@ form{
                 <div class="form-content">
                     <form action="">
                         <label for="fname">First Name</label><br>
-                        <input type="text" id="fname" name ="fname"><br>
+                        <input type="text" id="fname" name ="fname" ><br>
                         <label for="lname">Last Name</label><br>
                         <input type="text" id="lname" name ="lname"><br>
                         <label for="uname">Username</label><br>
-                        <input type="text" id="uname" name ="uname" required><br>
+                        <input type="text" id="uname" name ="uname"><br>
                         <label for="emailid">Email Id</label><br>
                         <input type="email" id="emailid" name ="emailid"><br>
                         <label for="pswd">Enter Password</label><br>
-                        <input type="password" id="pswd" name ="pswd"><br>
-                        <input type="checkbox" name="remember-me" id="remember-me">Remember Me <br>
-                        <input type="submit" name="register" id="register" value="REGISTER">
+                        <input type="password" id="pswd1" name ="pswd1" required><br>
+                        <label for="pswd">Re-Enter Password</label><br>
+                        <input type="password" id="pswd2" name ="pswd2" required><br>
+                        <input type="button" name="register" id="register" value="REGISTER" onclick="validate()">
                         <input type="reset" name="reset" id="reset" value="RESET">
                     </form> 
                 </div>    
