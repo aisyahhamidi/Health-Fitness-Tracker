@@ -1,0 +1,137 @@
+html {
+background-color: #dbedf3;
+background-image: -webkit-linear-gradient(45deg, #1a1a2e 50%, #e5e5e5 50%);
+font-family: 'Roboto', sans-serif;
+height: 150%;
+margin: auto;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-family: 'Montserrat', sans-serif;
+font-weight: 600;
+color: #07031a; 
+}
+
+body{
+font-family: "Roboto", sans-serif;
+}
+
+/* Header */ 
+
+.main-header{
+height: 90px;
+margin:0;
+padding: 0;
+}
+
+.title-header{
+background-color:#383838 ;
+margin:0;
+font-family: 'Recursive', sans-serif; 
+width: 70%;
+float: left;
+height: inherit;
+padding-left: 3%;
+/*display: flex;*/
+vertical-align: center;  
+}
+
+.title-heading{
+color: white;
+}   
+
+.nav-header{
+background-color:#f1f6f9 ;
+font-family: 'Recursive', sans-serif;
+font-weight: lighter;
+width: 27%;
+float: right;
+height: inherit;
+text-align: center;
+padding: 0 0;
+}
+
+ul{
+list-style-type: none;
+padding: 5%;
+}
+
+li{
+display: inline;
+padding: 0 5%;
+}
+
+a{
+color:#097392;
+text-decoration: none;
+}
+
+a:hover{
+color:#83b483;
+}
+
+.box {
+max-width: 1000px;
+margin: 50px auto;
+background: white;
+border-radius: 10px;
+box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+padding-bottom: 2%;
+height: 400px;
+}  
+
+.form-header{
+text-align: center;
+background-color:#9ba4b4; 
+padding: 0.5%;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+}
+
+.form-heading{
+color: white;
+}
+
+form{
+line-height: 9;
+margin: 1% 2%;
+padding-top: 2%;
+color: #7c7575;
+line-height: 2.5;
+text-align: center;
+}
+
+input[type=button],input[type=submit],input[type=reset]{
+
+text-align: center;
+color: white; 
+background-color: #404b69;
+border: none;
+border-radius: 5px;
+padding: 2% 6%;
+font-size: large;
+}
+
+input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover{
+background-color: #00587a; 
+}
+
+.form-pt1{
+    width: 48%;
+    float: left;
+    padding-left: 2%;
+    text-align: left;
+}
+.form-pt2{
+    width: 48%;
+    float: right;
+    padding-left: 2%;
+    text-align: left;
+}
+.bottom{
+    display: block;
+    text-align: center;
+    margin-left: 38%;
+    margin-right: 38%;
+}
+
