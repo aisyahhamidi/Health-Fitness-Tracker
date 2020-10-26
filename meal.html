@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function Additem(){
+            var item = document.getElementById("item").value;
+            var meal = document.getElementById('item-list');
+            meal.innerHTML += "<p name='meal-item[]'>" + item + "</p><br>";
+        }
+    </script>
+</head>
+<body>
+    <div class="breakfast" id="breakfast">
+        <form action="http://localhost/meals.php" method="POST">
+            <div id="item-list" name="item-list">
+
+            </div>
+            <p name="uname">hey</p>
+            <input type="text" placeholder="Add food" id="item">
+            <input type="button" id="add" value="Add" onclick="Additem()">
+            <input type="submit" name="submit" id="submit">
+        </form>
+    </div>
+</body>
+</html>
