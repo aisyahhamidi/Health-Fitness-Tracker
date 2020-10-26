@@ -4,9 +4,11 @@
 
 <div>
 <div class="main-nav">
+    <a href="homepage.html">Home Page</a><br>
     <a href="">Personal Information</a><br>
     <a href="">Food</a><br>
     <a href="">Fitness</a><br>
+    <a href="">Logout</a>
 
 </div>
 <div class="main-content">

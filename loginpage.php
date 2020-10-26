@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<html>
+<style>
+    <?php include 'css/styleforms.css';?>
+</style>
     <title>Healthify-Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Recursive&family=Roboto&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/stylesforms.css">
     <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
-
 </head>
-
 <body>
     <header>
         <div class="main-header"> 
@@ -33,7 +32,7 @@
                     <h3 class="form-heading">Login</h3>
                 </header>
                 
-                <form action="http://localhost/Health-Fitness-Tracker/meals.php" method="POST">
+                <form action="http://localhost/Health-Fitness-Tracker/loginpage.php" method="POST">
                     <label for="uname">Enter Username</label><br>
                     <input type="text" id="uname" name ="uname" required autofocus><br>
                     <label for="pswd">Enter Password</label><br>
@@ -44,7 +43,26 @@
             </div>
         </div>
         
+        <?php
+        $un = 'abc';
+        $p = 'pass';
+        
+        if(isset($_POST['login'])){
+            
+            $uname = $_POST['uname'];
+            $pswd = $_POST['pswd'];
 
+            if($uname!=$un or $pswd!=$p){?>
+                <script>
+                    alert('Incorrect username or password'); 
+                </script>
+            <?php    
+            }
+        }
+
+    
+
+?>
 </body>
-
 </html>
+
