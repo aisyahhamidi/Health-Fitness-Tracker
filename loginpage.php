@@ -26,39 +26,70 @@
         </div>
     </header>
 
-        <div class="box">
-            <div class="form">
-                <header class="form-header">
-                    <h3 class="form-heading">Login</h3>
-                </header>
-                
-                <form action="http://localhost/Health-Fitness-Tracker/loginpage.php" method="POST">
-                    <label for="uname">Enter Username</label><br>
-                    <input type="text" id="uname" name ="uname" required autofocus><br>
-                    <label for="pswd">Enter Password</label><br>
-                    <input type="password" id="pswd" name ="pswd" required><br>  
-                    <input type="checkbox" name="remember-me" id="remember-me">Remember Me <br>
-                    <input type="submit" name="login" id="login-btn" value="LOGIN">
-                </form> 
-            </div>
-        </div>
-        
-        <?php
-        $un = 'abc';
-        $p = 'pass';
-        
-        if(isset($_POST['login'])){
+    <div class="box">
+        <div class="form">
+            <header class="form-header">
+                <h3 class="form-heading">Login</h3>
+            </header>
             
-            $uname = $_POST['uname'];
-            $pswd = $_POST['pswd'];
+            <form action="http://localhost/Health-Fitness-Tracker/loginpage.php" method="POST">
+                <label for="uname">Enter Username</label><br>
+                <input type="text" id="uname" name ="uname" required autofocus><br>
+                <label for="pswd">Enter Password</label><br>
+                <input type="password" id="pswd" name ="pswd" required><br>  
+                <input type="checkbox" name="remember-me" id="remember-me">Remember Me <br>
+                <input type="submit" name="loginform" id="login-btn" value="LOGIN">
+            </form> 
+        </div>
+    </div>
+    
+    <?php
 
-            if($uname!=$un or $pswd!=$p){?>
-                <script>
-                    alert('Incorrect username or password'); 
-                </script>
-            <?php    
+    if(isset($_POST['loginform'])){
+        function OpenCon(){
+            $dbhost = "localhost";
+            $dbuser = "root";
+            $dbpass = "1234";
+            $db = "health-fitness-tracker";
+            $conn = new mysqli($dbhost, $dbuser, $dbpass,$db);
+            
+            return $conn;
+        }
+            
+        function CloseCon($conn){
+            $conn -> close();
+        }
+        
+        $conn = OpenCon();
+        if($conn === false){
+            die("ERROR: Could not connect. " . $conn->connect_error);
+        }
+
+        $uname = $_POST['uname'];
+        $pswd = $_POST['pswd'];
+
+        $sqlverify = "SELECT * from User WHERE username = '$uname' ";
+        $result = $conn->query($sqlverify);
+        if($result){
+            if($result->num_rows >0 ){
+                while($row = $result->fetch_assoc()) {
+                    if($row['username']!=$uname or $row['pswd']!=$pswd){?>
+                        <script>
+                            alert('Incorrect username or password'); 
+                        </script>
+                    <?php
+                    }
+                    else{
+                        session_start();
+                        $_SESSION['name'] = $row['first_name'];
+                        $_SESSION['username'] = $row['username'];
+                        $_SESSION['TotalCalories']=0;
+                        header('location:home.php');
+                    }
+                }
             }
         }
+    }
 ?>
 </body>
 </html>

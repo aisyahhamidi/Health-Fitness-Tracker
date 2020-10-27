@@ -43,7 +43,7 @@ background: white;
 border-radius: 10px;
 box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 padding-bottom: 2%;
-height: 30%;
+height: 40%;
 overflow: auto;
 }
 
@@ -55,7 +55,8 @@ background: white;
 border-radius: 10px;
 box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 padding-bottom: 2%;
-height: 30%;
+height: 40%;
+overflow: auto;
 }
 
 .form-header{
@@ -75,6 +76,10 @@ margin: 1% 2%;
 padding-top: 2%;
 color: #7c7575;
 text-align: center;
+}
+
+.form-input{
+    padding-top:5%;
 }
 
 input[type=button],input[type=submit],input[type=reset]{
@@ -98,4 +103,10 @@ width: 20px;
 
 input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover{
 background-color: #00587a; 
+}
+
+.title-img{
+    height: 20%;
+    margin-left: 15%;
+    
 }
