@@ -81,7 +81,7 @@ if(isset($_POST["register"])){
             $sqlins = "INSERT INTO User SET username = '$uname', pswd = '$pswd_hash' , email = '$emailid', first_name = '$fname', last_name = '$lname', age = '$age', height='$height', uweight = '$weight', goal = '$goal'";
             if($conn->query($sqlins) === true){
             } else{
-                header("location:signup.php/? error=$conn->error");
+                header("location:signup.php/?error=$conn->error");
             }
         }
     }
