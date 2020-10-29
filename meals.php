@@ -41,11 +41,9 @@
         if($result){
             if($result->num_rows ==0 ){
                 $sqlins = "INSERT into foodlog set username ='$uname', cdate = '$dt'";
-                if($conn->query($sqlins) === true){
-                    echo "Inserted into table successfully.";
-                } else{
+                if($conn->query($sqlins) !== true){
                     echo "ERROR: Could not able to execute $sqlins. " . $conn->error;
-                }
+                } 
             }
         }
         $sqlverify2 = "SELECT * from calorielog WHERE username = '$uname' and cdate = '$dt'";
@@ -55,11 +53,9 @@
                 $cons = 0;
                 $burnt = 0;
                 $sqlins = "INSERT into calorielog set username ='$uname', cdate = '$dt', calories_cons='$cons', calories_burnt='$burnt' ";
-                if($conn->query($sqlins) === true){
-                    echo "Inserted into table successfully.";
-                } else{
+                if($conn->query($sqlins) !== true){
                     echo "ERROR: Could not able to execute $sqlins. " . $conn->error;
-                }
+                } 
             }
         }
         $ctr = 0;

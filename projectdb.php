@@ -24,7 +24,7 @@ echo "Connected Successfully <br/>";
 
 $sqlcreate = "CREATE TABLE IF NOT EXISTS User(
     username VARCHAR(20) PRIMARY KEY NOT NULL,
-    pswd VARCHAR(20) NOT NULL,
+    pswd VARCHAR(50) NOT NULL,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
     email VARCHAR(70) NOT NULL UNIQUE,

@@ -128,11 +128,11 @@ background-color: #00587a;
                         <input type="radio" id="male" name ="gen" >Male
                         <input type="radio" id="other" name ="gen">Other<br>
                         <label for="age">Age</label>
-                        <input type="number" id="age" name ="age" value="<?php if($row['age']==0){echo " ";}?>"><br>
+                        <input type="number" id="age" name ="age" value="<?php if($row['age']==0){echo " ";}else{echo $row['age'];}?>"><br>
                         <label for="weight">Weight (in kgs) </label>
-                        <input type="number" id="weight" name ="weight" value="<?php if($row['uweight']==0){echo " ";}?>"><br>
+                        <input type="number" id="weight" name ="weight" value="<?php if($row['uweight']==0){echo " ";}else{echo $row['uweight'];}?>"><br>
                         <label for="height">Height (in cm) </label>
-                        <input type="number" id="number" name ="number" value="<?php if($row['height']==0){echo " ";}?>"><br>
+                        <input type="number" id="number" name ="number" value="<?php if($row['height']==0){echo " ";}else{echo $row['height '];}?>"><br>
                     </div>
                 </div>
                     <input type="submit" name="update" id="update" value="Update information?" >

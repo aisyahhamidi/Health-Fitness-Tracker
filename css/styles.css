@@ -177,6 +177,7 @@ input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover{
   background-color:#394867;
   color: #eeeeee;
   padding: 1%;
+  height: 30vh;
 }
 
 .footer-container a{
@@ -184,6 +185,15 @@ input[type=button]:hover,input[type=submit]:hover,input[type=reset]:hover{
 }
 
 .footer-items{
-  padding:0.5% 1%;
+  padding:3% 1%;
 }
 
+.left{
+  width: 30%;
+  float: left;
+}
+
+.right{
+  width: 30%;
+  float: right;
+}

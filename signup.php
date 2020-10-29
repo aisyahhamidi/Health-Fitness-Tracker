@@ -1,3 +1,12 @@
+<?php
+if(isset($_GET['error'])){
+    $err = $_GET['error'];
+    echo '<script>alert("'.$err.'")</script>';?>
+    <style><?php include 'css/formstyle.css';?></style><?php
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

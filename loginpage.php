@@ -30,8 +30,8 @@
 if(isset($_POST["register"])){
 
     $uname = $_POST['uname'];
-    echo $uname;
     $pswd = $_POST['pswd1'];
+    $pswd_hash =  hash('md5',$pswd);
     $emailid = $_POST['emailid'];
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
@@ -78,13 +78,12 @@ if(isset($_POST["register"])){
         <?php
         }
         else{
-            $sqlins = "INSERT INTO User SET username = '$uname', pswd = '$pswd' , email = '$emailid', first_name = '$fname', last_name = '$lname', age = '$age', height='$height', uweight = '$weight', goal = '$goal'";
+            $sqlins = "INSERT INTO User SET username = '$uname', pswd = '$pswd_hash' , email = '$emailid', first_name = '$fname', last_name = '$lname', age = '$age', height='$height', uweight = '$weight', goal = '$goal'";
             if($conn->query($sqlins) === true){
             } else{
-                echo "ERROR: Could not able to execute $sqlins. " . $conn->error;
+                header("location:signup.php/? error=$conn->error");
             }
         }
-    
     }
 }
 ?>
@@ -94,7 +93,6 @@ if(isset($_POST["register"])){
             <header class="form-header">
                 <h3 class="form-heading">Login</h3>
             </header>
-            
             <form action="http://localhost/Health-Fitness-Tracker/loginpage.php" method="POST">
                 <label for="uname">Enter Username</label><br>
                 <input type="text" id="uname" name ="uname" required autofocus><br>
@@ -115,7 +113,6 @@ if(isset($_POST["register"])){
             $dbpass = "1234";
             $db = "health-fitness-tracker";
             $conn = new mysqli($dbhost, $dbuser, $dbpass,$db);
-            
             return $conn;
         }
             
@@ -130,13 +127,13 @@ if(isset($_POST["register"])){
 
         $uname = $_POST['uname'];
         $pswd = $_POST['pswd'];
-
         $sqlverify = "SELECT * from User WHERE username = '$uname' ";
         $result = $conn->query($sqlverify);
         if($result){
             if($result->num_rows >0 ){
                 while($row = $result->fetch_assoc()) {
-                    if($row['username']!=$uname or $row['pswd']!=$pswd){?>
+                    $hash = hash('md5',$pswd);
+                    if($row['username']!=$uname or $hash!=$row['pswd'] ){?>
                         <script>
                             alert('Incorrect username or password'); 
                         </script>
