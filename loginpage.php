@@ -1,6 +1,5 @@
 <html>
 <title>Login</title>
-    <title>Healthify-Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Recursive&family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/formstyle.css">

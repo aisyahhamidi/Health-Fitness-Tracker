@@ -1,3 +1,4 @@
+<title>yourHealthPal-FITNESS</title>
 <style>
     <?php include 'css/stylemain.css';?>
 

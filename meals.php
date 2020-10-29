@@ -1,3 +1,4 @@
+<title>yourHealthPal-MEAL</title>
 <style>
     <?php include 'css/stylemain.css';?>
 
