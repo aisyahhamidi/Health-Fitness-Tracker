@@ -1,11 +1,11 @@
 <title>Home</title>
 <style>
     <?php include 'css/stylemain.css';?>
-    .main-content{
+.main-content{
         height:100vh;
         line-height:1.5;
     }
-    .box1, .box3{
+.box1, .box3{
 float: left;
 width: 40%;
 margin: 50px auto;
@@ -67,7 +67,7 @@ box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
         $cal = "SELECT * from calorielog where username='$uname' and cdate='$dt'";
         $res = $conn->query($cal);
         if($res){
-            $row = $res->fetch_row();
+            $row = $res->fetch_row(); 
             if($row){
                 $calcons = $row[2];
                 $calburn = $row[3];
@@ -131,7 +131,7 @@ box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
                 </div>
                     
                 <form action="http://localhost/Health-Fitness-Tracker/fitness.php" method="POST">
-                    <input type="submit" name="meals" id="meals" value="LOG WORKOUT">
+                    <input type="submit" name="fitness" id="fitness" value="LOG WORKOUT">
                 </form>
             </div>
         </div>

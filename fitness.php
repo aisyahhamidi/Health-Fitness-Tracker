@@ -1,16 +1,20 @@
 <style>
     <?php include 'css/stylemain.css';?>
-    .main-content{
-        line-height:2;
-    }
+
+.main-content{
+    line-height:2;
+}
+
 .box-content{
     padding:2% 1%;
     text-align: center;
     line-height: 1.5;
 }
+
 .title-img{
     height:30%;
 }
+
 .form-header{
 text-align: center;
 background-color:#9ba4b4; 

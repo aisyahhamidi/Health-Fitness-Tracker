@@ -74,20 +74,30 @@
                         $result = $conn->query($calselect);
                         if($result){
                             $row = $result->fetch_row();
-                            $calories = $row[0];
-                            $calmeal += $calories;
-                        }
+                            if($row){
+                                $calories = $row[0]; 
+                                $calmeal += $calories;
+                            }
+                            else{
+                                $avgquery = "SELECT AVG(calories) from fooddb";
+                                $res = $conn->query($avgquery);
+                                if($res){
+                                    $val = $res->fetch_row();
+                                    $cal = $val[0];
+                                    $calmeal += $cal;
+                                }
+                            } 
+                        }   
                     }
                     $calupdate = "UPDATE calorielog set calories_cons = calories_cons + $calmeal where username = '$uname' and cdate='$dt'";
                     $result2 = $conn->query($calupdate);
-                    if($result2){
+                    /*if($result2){
                         $sel = "SELECT calories_cons from calorielog where username = '$uname' and cdate='$dt' ";
                         $result = $conn->query($sel);
-                        
                     }
                     else{
                         $conn->error;
-                    }
+                    }*/
                     $mealupdate = "UPDATE foodlog set $meal = '$sessionMeal' where username = '$uname' and cdate='$dt' ";
                     $result = $conn->query($mealupdate);
                 }
@@ -123,6 +133,17 @@
                                         if($calrow){
                                             $cal = $calrow[0];
                                             echo "<p><b>$item</b> : $cal calories</p>";
+                                        }
+                                        else{
+                                            $avgquery = "SELECT AVG(calories) from fooddb";
+                                            $res = $conn->query($avgquery);
+                                            if($res){
+                                                $val = $res->fetch_row();
+                                                $cal = $val[0];
+                                                echo "<p><b>$item</b> : $cal calories (average)<br>
+                                                <i style='font-size:small;'>item doesn't exist in our database :(</p><br>";
+                                                
+                                            }
                                         }  
                                     }  
                                 }

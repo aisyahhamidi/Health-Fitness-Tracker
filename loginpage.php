@@ -28,7 +28,6 @@
     <?php
 
 if(isset($_POST["register"])){
-
     $uname = $_POST['uname'];
     $pswd = $_POST['pswd1'];
     $pswd_hash =  hash('md5',$pswd);
@@ -74,14 +73,14 @@ if(isset($_POST["register"])){
     $result = $conn->query($sqlverify);
     if($result){
         if($result->num_rows >0 ){
-            ?><script>alert('Username already exists');</script>
-        <?php
+            $str = 'Username already exists';
+            header("location:signup.php/?error=$str"); 
         }
         else{
-            $sqlins = "INSERT INTO User SET username = '$uname', pswd = '$pswd_hash' , email = '$emailid', first_name = '$fname', last_name = '$lname', age = '$age', height='$height', uweight = '$weight', goal = '$goal'";
+            $sqlins = "INSERT INTO User SET username = '$uname', pswd = '$pswd_hash' , email = '$emailid' , first_name = '$fname', last_name = '$lname', age = '$age', height='$height', uweight = '$weight', goal = '$goal'";
             if($conn->query($sqlins) === true){
             } else{
-                header("location:signup.php/?error=$conn->error");
+                header("location:signup.php/?error=$conn->error"); 
             }
         }
     }
