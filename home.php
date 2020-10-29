@@ -37,10 +37,10 @@ box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 <div>
     <div class="main-nav">
         <a href="home.php">Home Page</a><br>
-        <a href="">Personal Information</a><br>
-        <a href="">Food</a><br>
-        <a href="">Fitness</a><br>
-        <a href="">Logout</a>
+        <a href="personalinfo.php">Personal Information</a><br>
+        <a href="meals.php">Food</a><br>
+        <a href="fitness.php">Fitness</a><br>
+        <a href="logout.php">Logout</a>
     </div>
     <div class="title-img">               
     <img src="images/main_image1.jpg" style="width:100%; height:100%">
@@ -50,6 +50,15 @@ box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
     <?php
         session_start();
         echo "<h3>Hey ".$_SESSION['name']." </h3>";
+        function OpenCon(){
+            $dbhost = "localhost";
+            $dbuser = "root";
+            $dbpass = "1234";
+            $db = "health-fitness-tracker";
+            $conn = new mysqli($dbhost, $dbuser, $dbpass,$db);
+            return $conn;
+        }
+        $conn = OpenCon();
     ?>
     <h4>You've consumed a total of <?php echo $_SESSION['TotalCalories'];?> today!</h4>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit<br/>

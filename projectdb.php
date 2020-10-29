@@ -70,5 +70,16 @@ if($conn->query($sqlcreate3) === true){
     echo "ERROR: Could not able to execute $sqlcreate. " . $conn->error;
 }
 
+$sqlcreate4 = "CREATE TABLE IF NOT EXISTS fitnesslog(
+    cdate DATE,
+    username VARCHAR(20),
+    name_of_exercise VARCHAR(30),
+    calories_burnt INT
+)";
 
+if($conn->query($sqlcreate4) === true){
+    echo "Table created successfully. <br/>";
+} else{
+    echo "ERROR: Could not able to execute $sqlcreate4. " . $conn->error;
+}
  ?>

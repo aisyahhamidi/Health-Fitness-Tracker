@@ -5,152 +5,161 @@
 <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
 
 <div>
-<div class="main-nav">
-    <a href="home.php">Home Page</a><br>
-    <a href="">Personal Information</a><br>
-    <a href="">Food</a><br>
-    <a href="">Fitness</a><br>
-    <a href="">Logout</a>
-</div>
-<div class="title-img">               
-    <img src="images/meal-img.jpg" style="width:100%; height:100%">
-</div>
-<div class="main-content">
-<?php 
-    session_start(); 
-    function OpenCon(){
-        $dbhost = "localhost";
-        $dbuser = "root";
-        $dbpass = "1234";
-        $db = "health-fitness-tracker";
-        $conn = new mysqli($dbhost, $dbuser, $dbpass,$db);
-        return $conn;
-    }
-        
-    function CloseCon($conn){
-        $conn -> close();
-    }
-    $conn = OpenCon();
-    if($conn === false){
-        die("ERROR: Could not connect. " . $conn->connect_error);
-    }
-    $uname = $_SESSION['username'];
-    $dt = date("Y-m-d");
-    
-    $sqlverify = "SELECT * from foodlog WHERE username = '$uname' and cdate = '$dt'";
-    $result = $conn->query($sqlverify);
-    if($result){
-        if($result->num_rows ==0 ){
-            $sqlins = "INSERT into foodlog set username ='$uname', cdate = '$dt'";
-            if($conn->query($sqlins) === true){
-                echo "Inserted into table successfully.";
-            } else{
-                echo "ERROR: Could not able to execute $sqlins. " . $conn->error;
+    <div class="main-nav">
+        <a href="home.php">Home Page</a><br>
+        <a href="personalinfo.php">Personal Information</a><br>
+        <a href="meals.php">Food</a><br>
+        <a href="">Fitness</a><br>
+        <a href="logout.php">Logout</a>
+    </div>
+    <div class="title-img">               
+        <img src="images/meal-img.jpg" style="width:100%; height:100%">
+    </div>
+    <div class="main-content">
+
+        <?php
+        session_start(); 
+        function OpenCon(){
+            $dbhost = "localhost";
+            $dbuser = "root";
+            $dbpass = "1234";
+            $db = "health-fitness-tracker";
+            $conn = new mysqli($dbhost, $dbuser, $dbpass,$db);
+            return $conn;
+        }
+        $conn = OpenCon();
+        $uname = $_SESSION['username'];
+        $dt = date("Y-m-d");
+        $flag = 0;
+        $sqlverify = "SELECT * from foodlog WHERE username = '$uname' and cdate = '$dt'";
+        $result = $conn->query($sqlverify);
+        if($result){
+            if($result->num_rows ==0 ){
+                $sqlins = "INSERT into foodlog set username ='$uname', cdate = '$dt'";
+                if($conn->query($sqlins) === true){
+                    echo "Inserted into table successfully.";
+                } else{
+                    echo "ERROR: Could not able to execute $sqlins. " . $conn->error;
+                }
             }
         }
-    }
-    $ctr1=0;
-    $mealsArray = ['breakfast','lunch','snacks','dinner'];
-    if(isset($_POST['submit'])){
-        foreach($mealsArray as $meal){
-            $ctr1+=1;
-            if(!isset($_SESSION[$meal])){
-                $_SESSION[$meal] ='';
-            }
-            if(!empty($_POST[$meal])){
-                $_SESSION[$meal] .=$_POST[$meal].', ';   
-            }
-            $mealSession = $_SESSION[$meal] ;
-            $sqlupdate = "UPDATE foodlog SET $meal='$mealSession' WHERE username='$uname' and cdate = '$dt'";
-            if ($conn->query($sqlupdate) === TRUE) {
-                $select = "SELECT * FROM foodlog where username='$uname' and cdate='$dt'";
-                    $result = $conn -> query($select);
-                    if($result){
-                        if($result->num_rows>0){
-                            $row = $result->fetch_row();
-                            $str = $row[$ctr1+1];
-                            $arr = explode(',',$str);
-                            foreach($arr as $a){
-                                $cal = "SELECT calories FROM fooddb where item='$a'";
-                                $result = $conn -> query($cal);
-                                $calrow = $result->fetch_row();
-                                if($calrow){
-                                    $cal = $calrow[0];
-                                    $_SESSION['TotalCalories']+=$cal;
-                                }                                      
-                            }
-                        }
-                    }
-            } else {
-                echo "Could not update: " . $conn->error;
+        $sqlverify2 = "SELECT * from calorielog WHERE username = '$uname' and cdate = '$dt'";
+        $result = $conn->query($sqlverify2);
+        if($result){
+            if($result->num_rows ==0 ){
+                $cons = 0;
+                $burnt = 0;
+                $sqlins = "INSERT into calorielog set username ='$uname', cdate = '$dt', calories_cons='$cons', calories_burnt='$burnt' ";
+                if($conn->query($sqlins) === true){
+                    echo "Inserted into table successfully.";
+                } else{
+                    echo "ERROR: Could not able to execute $sqlins. " . $conn->error;
+                }
             }
         }
-    }  
-?>
-<?php
-     
-    $ctr = 0;
-    $icon = ['mug-hot','pizza-slice','apple-alt','hamburger'];
-    foreach($mealsArray as $meal){ 
-        $ctr ++; 
-            ?>
-        <div class="meal-box<?php echo $ctr?>" >
-            <header class="form-header">
-                <h3 class="form-heading"><?php echo $meal; ?></h3>
-            </header>
-            <form action="http://localhost/Health-Fitness-Tracker/meals.php" method="POST">
-                <div id="item-list<?php echo $ctr;?>" name="item-list<?php echo $ctr;?>" >
-                <?php echo "<i class='fas fa-".$icon[$ctr-1]." fa-3x' style='color:#7c7575'></i>"."<br>";?>
-                <?php
-                    $conn = OpenCon();
-                    $select = "SELECT * FROM foodlog where username='$uname' and cdate='$dt'";
-                    $result = $conn -> query($select);
-                    if($result){
-                        if($result->num_rows>0){
+        $ctr = 0;
+        $ctr1=0;
+        $mealsArray = ['breakfast','lunch','snacks','dinner'];
+        if(isset($_POST['submit'])){
+            foreach($mealsArray as $meal){
+                $ctr1 +=1;
+                $calmeal = 0;
+                if(!empty($_POST[$meal])){
+                    $_SESSION[$meal] = $_POST[$meal];
+                    $sessionMeal = $_SESSION[$meal];
+                    $arr = explode(',',$sessionMeal);
+                    foreach($arr as $item){
+                        $calselect = "SELECT DISTINCT calories from fooddb where item='$item'";
+                        $result = $conn->query($calselect);
+                        if($result){
                             $row = $result->fetch_row();
-                            $str = $row[$ctr+1];
-                            $arr = explode(',',$str);
-                            foreach($arr as $a){
-                                $cal = "SELECT calories FROM fooddb where item='$a'";
-                                $result = $conn -> query($cal);
-                                $calrow = $result->fetch_row();
-                                if($calrow){
-                                    $cal = $calrow[0];?>
-                                <p><?php echo $a." : ".$cal?></p>
-
-                                <?php    
-                                }                                      
-                            }
+                            $calories = $row[0];
+                            $calmeal += $calories;
                         }
                     }
-                ?>   
-
-                </div>
-                <div class="form-input">
-                    <input list="items" id="item<?php echo $ctr;?>">
+                    $calupdate = "UPDATE calorielog set calories_cons = calories_cons + $calmeal where username = '$uname' and cdate='$dt'";
+                    $result2 = $conn->query($calupdate);
+                    if($result2){
+                        $sel = "SELECT calories_cons from calorielog where username = '$uname' and cdate='$dt' ";
+                        $result = $conn->query($sel);
+                        
+                    }
+                    else{
+                        $conn->error;
+                    }
+                    $mealupdate = "UPDATE foodlog set $meal = '$sessionMeal' where username = '$uname' and cdate='$dt' ";
+                    $result = $conn->query($mealupdate);
+                }
+            }
+        }
+        $icon = ['mug-hot','pizza-slice','apple-alt','hamburger'];
+        foreach($mealsArray as $meal){ 
+            $ctr ++;
+        ?>
+            <div class="meal-box<?php echo $ctr?>">
+                <header class="form-header">
+                    <h3 class="form-heading"><?php echo $meal; ?></h3>
+                </header>
+                <form action="http://localhost/Health-Fitness-Tracker/meals_copy.php" method="POST">
+                    <div id="item-list<?php echo $ctr;?>" name="item-list<?php echo $ctr;?>" >
+                    <?php echo "<i class='fas fa-".$icon[$ctr-1]." fa-3x' style='color:#7c7575'></i>"."<br>";?>
                     <?php
-                        $select = "SELECT item,meal FROM fooddb";
-                        $result = $conn->query($select);
-                        if($result->num_rows >0){?>
-                        <datalist id="items">
-                            <?php while($row = $result->fetch_assoc()) {?>
-                                <option value="<?php echo $row['item'];?>"></option>
-                            <?php
-                            } ?>
-                        </datalist>
+                    $emptymeal = "SELECT * FROM foodlog where ($meal = '' or $meal is null) and username ='$uname'";
+                    $result = $conn->query($emptymeal);
+                    if($result){
+                        if($result->num_rows == 0){
+                            $sel = "SELECT $meal FROM foodlog where username ='$uname' and cdate = '$dt' ";
+                            $result2 = $conn->query($sel);
+                            if($result2){
+                                if($result2->num_rows >0){
+                                    $row = $result2->fetch_row();
+                                    $str = $row[0];
+                                    $arr = explode(',',$str);
+                                    foreach($arr as $item){
+                                        $cal = "SELECT DISTINCT calories FROM fooddb where item='$item'";
+                                        $result = $conn -> query($cal);
+                                        $calrow = $result->fetch_row();
+                                        if($calrow){
+                                            $cal = $calrow[0];
+                                            echo "<p><b>$item</b> : $cal calories</p>";
+                                        }  
+                                    }  
+                                }
+                            }?>
+                        </div>
                         <?php
-                        }?>
-                    <!--input type="text" placeholder="Add food" id="item<?php/* echo $ctr;*/?>"-->
-                    <input type="hidden" id="<?php echo $meal; ?>" name="<?php echo $meal; ?>">
-                    <input type="button" id="add" value="+" name='add' onclick="Additem(<?php echo $ctr;?>)"><br>
-                    <input type="submit" id="submit" name="submit">
-                </div>    
-            </form>
-        </div>
-<?php        
-    }
-?>
-</div>
+                        } 
+                        else{ ?>
+                            </div>
+                            <div class="form-input">
+                                <input list="items" id="item<?php echo $ctr;?>">
+                                <?php
+                                $select = "SELECT DISTINCT item FROM fooddb";
+                                $result = $conn->query($select);
+                                if($result->num_rows >0){?>
+                                <datalist id="items">
+                                    <?php while($row = $result->fetch_assoc()) {?>
+                                        <option value="<?php echo $row['item'];?>"></option>
+                                    <?php
+                                    } ?>
+                                </datalist>
+                                <?php
+                                }?>
+                                <!--input type="text" placeholder="Add food" id="item<?php/* echo $ctr;*/?>"-->
+                                <input type="hidden" id="<?php echo $meal; ?>" name="<?php echo $meal; ?>">
+                                <input type="button" id="add" value="+" name='add' onclick="Additem(<?php echo $ctr;?>)"><br>
+                                <input type="submit" id="submit" name="submit">
+                            </div>  
+                        <?php  
+                        } 
+                    }                    
+                    ?>   
+                </form>
+            </div>
+        <?php        
+            }
+        ?>
+    </div>
 </div>
 <script>
     mealList =[1,2,3,4];

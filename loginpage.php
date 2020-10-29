@@ -17,14 +17,77 @@
             <div class="nav-header">
                 <nav class="nav-items">
                     <ul>
-                        <li><a href="register-here.html" target="_blank">Blog</a></li>
                         <li><a href="homepage.html#about-us">About Us</a></li>
-                        <li><a href="homepage.html#get-in-touch">Get in touch</a></li>
+                        <li><a href="mailto:">Contact-Us</a></li>
                     </ul>  
                 </nav>
             </div>
         </div>
     </header>
+
+    <?php
+
+if(isset($_POST["register"])){
+
+    $uname = $_POST['uname'];
+    echo $uname;
+    $pswd = $_POST['pswd1'];
+    $emailid = $_POST['emailid'];
+    $fname = $_POST['fname'];
+    $lname = $_POST['lname'];
+    $age='';
+    $weight='';
+    $height='';
+    $goal ='';
+    if(!empty($_POST['age'])){
+        $age = $_POST['age'];
+    }
+    if(!empty($_POST['weight'])){
+        $weight = $_POST['weight'];
+    }
+    if(!empty($_POST['height'])){
+        $height = $_POST['height'];
+    }
+    if(!empty($_POST['goal'])){
+        $goal = $_POST['goal'];
+    }
+
+    function OpenCon(){
+        $dbhost = "localhost";
+        $dbuser = "root";
+        $dbpass = "1234";
+        $db = "health-fitness-tracker";
+        $conn = new mysqli($dbhost, $dbuser, $dbpass,$db);
+        
+        return $conn;
+    }
+        
+    function CloseCon($conn){
+        $conn -> close();
+    }
+    
+    $conn = OpenCon();
+    if($conn === false){
+        die("ERROR: Could not connect. " . $conn->connect_error);
+    }
+    $sqlverify = "SELECT * from User WHERE username = '$uname' ";
+    $result = $conn->query($sqlverify);
+    if($result){
+        if($result->num_rows >0 ){
+            ?><script>alert('Username already exists');</script>
+        <?php
+        }
+        else{
+            $sqlins = "INSERT INTO User SET username = '$uname', pswd = '$pswd' , email = '$emailid', first_name = '$fname', last_name = '$lname', age = '$age', height='$height', uweight = '$weight', goal = '$goal'";
+            if($conn->query($sqlins) === true){
+            } else{
+                echo "ERROR: Could not able to execute $sqlins. " . $conn->error;
+            }
+        }
+    
+    }
+}
+?>
 
     <div class="box">
         <div class="form">

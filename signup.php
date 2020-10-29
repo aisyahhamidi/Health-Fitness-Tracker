@@ -8,23 +8,19 @@
     <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
     <script>
         function validate(){
-            
             var uname = document.getElementById('uname').value;
             var email = document.getElementById('emailid').value;
             var pswd1 = document.getElementById('pswd1').value;
             var pswd2 = document.getElementById('pswd2').value;
             if(uname==""||uname==null){
-                alert("Please enter username");
-                
+                alert("Please enter username");  
             }
             if(pswd1.length<6){
-                alert('Password must be atleast 6 characters long');
-                
+                alert('Password must be atleast 6 characters long'); 
             }
             if{
                 if(pswd1.match(/[A-Z]/) == null || pswd1.match(/[a-z]/) == null || pswd1.match(/\W/) == null || pswd1.match(/[0-9]/) == null ){
                 alert('Password must contain atleast 1 uppercase letter, 1 lowercase letter and 1 special character!');
-                
                 }
                 else{
                     if(pswd1!=pswd2){
@@ -33,9 +29,6 @@
                     }
                 }
             }
-            else{
-               
-            } 
         }    
     </script>
 </head>
@@ -48,9 +41,8 @@
             <div class="nav-header">
                 <nav class="nav-items">
                     <ul>
-                        <li><a href="register-here.html" target="_blank">Blog</a></li>
                         <li><a href="homepage.html">About Us</a></li>
-                        <li><a href="homepage.html">Get in touch</a></li>
+                        <li><a href="mailto:">Contact-Us</a></li>
                     </ul>  
                 </nav>
             </div>
@@ -95,7 +87,7 @@
                             </div>
                         </div>
                         <div class="bottom">
-                            <input type="submit" name="submit" id="submit" value="REGISTER" onsubmit="validate()">
+                            <input type="submit" name="register" id="register" value="REGISTER" onsubmit="validate()">
                         <input type="reset" name="reset" id="reset" value="RESET">
                         </div>
                         
@@ -107,67 +99,3 @@
 </body>
 </html>
 
-<?php
-
-if(isset($_POST["submit"])){
-
-    $uname = $_POST['uname'];
-    echo $uname;
-    $pswd = $_POST['pswd1'];
-    $emailid = $_POST['emailid'];
-    $fname = $_POST['fname'];
-    $lname = $_POST['lname'];
-    $age='';
-    $weight='';
-    $height='';
-    $goal ='';
-    if(!empty($_POST['age'])){
-        $age = $_POST['age'];
-    }
-    if(!empty($_POST['weight'])){
-        $weight = $_POST['weight'];
-    }
-    if(!empty($_POST['height'])){
-        $height = $_POST['height'];
-    }
-    if(!empty($_POST['goal'])){
-        $goal = $_POST['goal'];
-    }
-
-    function OpenCon(){
-        $dbhost = "localhost";
-        $dbuser = "root";
-        $dbpass = "1234";
-        $db = "health-fitness-tracker";
-        $conn = new mysqli($dbhost, $dbuser, $dbpass,$db);
-        
-        return $conn;
-    }
-        
-    function CloseCon($conn){
-        $conn -> close();
-    }
-    
-    $conn = OpenCon();
-    if($conn === false){
-        die("ERROR: Could not connect. " . $conn->connect_error);
-    }
-    $sqlverify = "SELECT * from User WHERE username = '$uname' ";
-    $result = $conn->query($sqlverify);
-    if($result){
-        if($result->num_rows >0 ){
-            ?><script>alert('Username already exists');</script>
-        <?php
-        }
-        else{
-            $sqlins = "INSERT INTO User SET username = '$uname', pswd = '$pswd' , email = '$emailid', first_name = '$fname', last_name = '$lname', age = '$age', height='$height', uweight = '$weight', goal = '$goal'";
-            if($conn->query($sqlins) === true){
-                echo "yay";
-            } else{
-                echo "ERROR: Could not able to execute $sqlins. " . $conn->error;
-            }
-        }
-    
-    }
-}
-?>
