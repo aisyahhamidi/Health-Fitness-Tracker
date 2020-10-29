@@ -100,7 +100,7 @@
                 <header class="form-header">
                     <h3 class="form-heading"><?php echo $meal; ?></h3>
                 </header>
-                <form action="http://localhost/Health-Fitness-Tracker/meals_copy.php" method="POST">
+                <form action="http://localhost/Health-Fitness-Tracker/meals.php" method="POST">
                     <div id="item-list<?php echo $ctr;?>" name="item-list<?php echo $ctr;?>" >
                     <?php echo "<i class='fas fa-".$icon[$ctr-1]." fa-3x' style='color:#7c7575'></i>"."<br>";?>
                     <?php

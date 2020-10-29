@@ -1,7 +1,6 @@
 <style>
     <?php include 'css/stylemain.css';?>
     .main-content{
-        height:100vh;
         line-height:2;
     }
 .box-content{
@@ -121,6 +120,7 @@ $dt = date('Y-m-d');
 $sqlverify = "SELECT * from calorielog WHERE username = '$uname' and cdate = '$dt'";
 $result = $conn->query($sqlverify);
 $burnt=0;
+$cons=0;
 if($result){
     if($result->num_rows ==0 ){
         $sqlins = "INSERT into calorielog set username ='$uname', cdate = '$dt', calories_burnt='$burnt', calories_cons='$cons'";

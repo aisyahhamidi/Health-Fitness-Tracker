@@ -41,8 +41,9 @@
             <div class="nav-header">
                 <nav class="nav-items">
                     <ul>
+                        <li><a href="https://fitfoodiefinds.com" target="_blank">Blog</a></li>
                         <li><a href="homepage.html">About Us</a></li>
-                        <li><a href="mailto:">Contact-Us</a></li>
+                        <li><a href="mailto:hftracker@gmail.com">Get in touch</a></li>
                     </ul>  
                 </nav>
             </div>

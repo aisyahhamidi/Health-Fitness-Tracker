@@ -17,8 +17,9 @@
             <div class="nav-header">
                 <nav class="nav-items">
                     <ul>
-                        <li><a href="homepage.html#about-us">About Us</a></li>
-                        <li><a href="mailto:">Contact-Us</a></li>
+                        <li><a href="https://fitfoodiefinds.com" target="_blank">Blog</a></li>
+                        <li><a href="homepage.html">About Us</a></li>
+                        <li><a href="mailto:hftracker@gmail.com">Get in touch</a></li>
                     </ul>  
                 </nav>
             </div>
@@ -146,7 +147,7 @@ if(isset($_POST["register"])){
                         session_start();
                         $_SESSION['name'] = $row['first_name'];
                         $_SESSION['username'] = $row['username'];
-                        $_SESSION['TotalCalories']=0;
+                        $_SESSION['facts']= ['Drinking something hot will cool you down!', 'Studies have shown that if you are tired, exercise will help'];
                         header('location:home.php');
                     }
                 }

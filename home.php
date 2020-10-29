@@ -59,8 +59,34 @@ box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
             return $conn;
         }
         $conn = OpenCon();
+        $uname = $_SESSION['username'];
+        $dt = date('Y-m-d');
+        $cal = "SELECT * from calorielog where username='$uname' and cdate='$dt'";
+        $res = $conn->query($cal);
+        if($res){
+            $row = $res->fetch_row();
+            if($row){
+                $calcons = $row[2];
+                $calburn = $row[3];
+            }
+            else{
+                $calcons = 0;
+                $calburn = 0;
+            }
+            
+        }
+
     ?>
-    <h4>You've consumed a total of <?php echo $_SESSION['TotalCalories'];?> today!</h4>
+    <h4>Calories consumed today: <?php echo "$calcons calories";?></h4>
+    <h4>Calories burnt today: <?php echo "$calburn calories";?></h4>
+
+    <?php if($calcons==0){
+        echo "<i><b>Head over to the Food tab to log your first meal!</b></i>";
+    }
+    if($calburn==0){
+        echo "<i><b>Time to get a little active ".$_SESSION['name']."</b></i>";
+    }
+    
     Lorem ipsum dolor sit amet, consectetur adipiscing elit<br/>
     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
     Ut enim ad minim veniam <br></p>

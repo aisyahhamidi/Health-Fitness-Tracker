@@ -70,9 +70,11 @@ a:hover{
 }
  .info{
   position: relative;
-  top: 60%;
+  top: 57%;
   text-align: center;
   color: rgb(87, 84, 84);
+  font-size: large;
+  line-height: 2;
 }
 
 .button1{
