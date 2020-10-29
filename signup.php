@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Healthify-Home</title>
+    <title>Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Recursive&family=Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/stylesforms.css">
+    <link rel="stylesheet" href="css/formstyle.css">
     <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
     <script>
         function validate(){
@@ -25,7 +25,6 @@
                 else{
                     if(pswd1!=pswd2){
                     alert('Please enter correct password');
-                    
                     }
                 }
             }
@@ -36,7 +35,7 @@
     <header>
         <div class="main-header"> 
             <div class="title-header">
-                <h1 class="title-heading"><i class="fas fa-heartbeat"></i>  name TBD</h1>
+                <h1 class="title-heading"><i class="fas fa-seedling"></i>yourHealthPal</h1>
             </div>
             <div class="nav-header">
                 <nav class="nav-items">

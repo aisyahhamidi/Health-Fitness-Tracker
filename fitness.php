@@ -148,6 +148,7 @@ if(isset($_POST['submit'])){
 ?>
 <div>
     <div class="main-nav">
+    <h3 style="color:white;"><i class="fas fa-seedling"></i>yourHealthPal</h3>
         <a href="home.php">Home Page</a><br>
         <a href="personalinfo.php">Personal Information</a><br>
         <a href="meals.php">Food</a><br>
@@ -155,7 +156,7 @@ if(isset($_POST['submit'])){
         <a href="logout.php">Logout</a>
     </div>
     <div class="title-img">               
-        <img src="images/main_image1.jpg" style="width:100%; height:100%">
+        <img src="images/cycle.jpg" style="width:100%; height:100%">
     </div>
     <div class="main-content">
     <h3 style="text-align:center;">Fitness</h3>

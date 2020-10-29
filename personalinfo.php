@@ -1,3 +1,4 @@
+<title>Personal Information</title>
 <style>
     <?php include 'css/stylemain.css';?>
     .main-content{
@@ -70,7 +71,8 @@ background-color: #00587a;
 </style>
 <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
 <div>
-    <div class="main-nav">
+<div class="main-nav">
+    <h3 style="color:white;"><i class="fas fa-seedling"></i>yourHealthPal</h3>
         <a href="home.php">Home Page</a><br>
         <a href="personalinfo.php">Personal Information</a><br>
         <a href="meals.php">Food</a><br>

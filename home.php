@@ -1,7 +1,9 @@
+<title>Home</title>
 <style>
     <?php include 'css/stylemain.css';?>
     .main-content{
         height:100vh;
+        line-height:1.5;
     }
     .box1, .box3{
 float: left;
@@ -36,6 +38,7 @@ box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
 <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
 <div>
     <div class="main-nav">
+    <h3 style="color:white;"><i class="fas fa-seedling"></i>yourHealthPal</h3>
         <a href="home.php">Home Page</a><br>
         <a href="personalinfo.php">Personal Information</a><br>
         <a href="meals.php">Food</a><br>
@@ -81,15 +84,19 @@ box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
     <h4>Calories burnt today: <?php echo "$calburn calories";?></h4>
 
     <?php if($calcons==0){
-        echo "<i><b>Head over to the Food tab to log your first meal!</b></i>";
+        echo "<i><b>Head over to the <a href='meals.php' style='color:#83b483;'>Food tab </a> to log your first meal!</b></i><br>";
     }
     if($calburn==0){
-        echo "<i><b>Time to get a little active ".$_SESSION['name']."</b></i>";
+        echo "<i><b>Time to get a little active ".$_SESSION['name']." . Head over to the <a href='fitness.php' style='color:#83b483;'> Fitness tab </a> to log your first workout</b></i><br>";
     }
+    $facts = ["Drinking something hot will cool you down!", "Studies have shown that if you are tired, exercise will help!", "Eating eggs improves your reflexes!", 
+    "Most of the fat you lose exits your body via your lungs!","Oatmeal helps fight depression! And so does coffee :)"];
+    $i = rand(0,4);
+    $fact = $facts[$i];
+    echo "<br><b>Did you know</b> <i>$fact</i>";
     
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit<br/>
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-    Ut enim ad minim veniam <br></p>
+    ?>   
+
 
     <div>
         <div class="box1" >
@@ -98,9 +105,9 @@ box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
                 </header>
             
                 <div class="box-content" >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit<br/>
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-                    Ut enim ad minim veniam <br>
+                Do you think your diet is 100% healthy?<br>
+                 Are you eating enough fresh fruit and vegetables? <br> 
+                 And do pay attention to a balanced macronutrient ratio?<br/>
                     <i class="fas fa-utensils fa-3x" style="color:#7c7575"></i>
                     
                 </div>
@@ -116,10 +123,10 @@ box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
                     <h3 class="form-heading">Fitness</h3>
                 </header>
             
-                <div class="box-content" >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit<br/>
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <br>
-                    Ut enim ad minim veniam <br>
+                <div class="box-content">  
+                    If it's hard to find time for exercise, <br>
+                     don't fall back on excuses.<br/>
+                    Schedule workouts as you would any other important activity.<br>
                     <i class="fas fa-dumbbell fa-3x" style="color:#7c7575"></i>
                 </div>
                     

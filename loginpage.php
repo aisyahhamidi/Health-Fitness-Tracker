@@ -1,18 +1,17 @@
 <html>
-<style>
-    <?php include 'css/styleforms.css';?>
-</style>
+<title>Login</title>
     <title>Healthify-Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Recursive&family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/stylesforms.css">
+    <link rel="stylesheet" href="css/formstyle.css">
     <script src="https://kit.fontawesome.com/4cf62cb5b0.js" crossorigin="anonymous"></script>
+    
 </head>
 <body>
     <header>
         <div class="main-header"> 
             <div class="title-header">
-                <h1 class="title-heading"><i class="fas fa-heartbeat"></i>  name TBD</h1>
+            <h1 class="title-heading"><i class="fas fa-seedling"></i>yourHealthPal</h1>
             </div>
             <div class="nav-header">
                 <nav class="nav-items">
@@ -147,7 +146,6 @@ if(isset($_POST["register"])){
                         session_start();
                         $_SESSION['name'] = $row['first_name'];
                         $_SESSION['username'] = $row['username'];
-                        $_SESSION['facts']= ['Drinking something hot will cool you down!', 'Studies have shown that if you are tired, exercise will help'];
                         header('location:home.php');
                     }
                 }
